@@ -5,7 +5,7 @@ services:
     container_name: web
     restart: always
     ports:
-      - "8000:80"  # Dışarıdan 8080 portu ile erişim
+      - "80:80"  # Dışarıdan 8080 portu ile erişim
     depends_on:
       - redis
       - celery_worker
