@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbo.az Giriş və Qeydiyyat</title>
+    <link rel="stylesheet" href="{% static 'elanlar/login.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/vusale.png' %}" />
+
+</head>
+<body>
+    <div class="qutu">
+        <div class="btn"><a href="{% url 'main' %}" class="new-ad-button">&times;</a></div>
+        <div class="center">
+            <div class="container">
+                <h1>TURBO.AZ</h1>
+                <p>Öz elanlarınıza baxmağın, onları redaktə və bərpa etməyin rahat yolu</p>
+                <div class="auth-buttons">
+                    <a href="{% url 'login_user' %}" class="{% if request.resolver_match.url_name == 'login_user' %}active{% endif %}"><button class="btn1">Giriş</button></a>
+                    <a href="{% url 'register_user' %}" class="{% if request.resolver_match.url_name == 'register_user' %}active{% endif %}"><button class="btn2">Qeydiyyat</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if request.resolver_match.url_name == 'register_user' %}
+        <div class="auth-form">
+            <h2>Qeydiyyat</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="username">İstifadəçi adı:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">Şifrə:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <label for="confirm_password">Şifrəni təsdiqləyin:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required><br>
+
+                <button type="submit">Qeydiyyat</button>
+            </form>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% elif request.resolver_match.url_name == 'login_user' %}
+        <div class="auth-form">
+            <h2>Giriş</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="username">İstifadəçi adı:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">Şifrə:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <button type="submit">Giriş</button>
+            </form>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>

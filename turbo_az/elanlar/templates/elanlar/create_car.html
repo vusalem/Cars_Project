@@ -1,0 +1,123 @@
+...{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Turbo.Az - Avtomobilleri burada seçirler  turbo.az</title>
+        <link rel="stylesheet" href="{% static 'elanlar/create_car.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'icons/vusale.png' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    </head>
+
+<body>
+    <header>
+        <div class="head-info">
+            <div class="container">
+                <div class="row">
+                    <ul class="d-flex">
+                        <li>
+                            <a href="https://tap.az/">Tap.az</a>
+                        </li>
+                        <li>
+                            <a href="https://bina.az/">Bina.az</a>
+                        </li>
+                        <li>
+                            <a href="https://boss.az/">Boss.az</a>
+                        </li>
+                    </ul>
+                    <ul class="d-flex">
+                        <span>Dəstək: (012) 505-77-55</span>
+                        <li>
+                            <a href="">Yardım</a>
+                        </li>
+                        <li>
+                            <a href="">RU</a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa-solid fa-heart"></i>
+                                Seçilmişlər
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'login_register' %}">
+                                <i class="fa-solid fa-circle-user"></i>
+                                Giriş
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="web-navbar">
+            <div class="container">
+                <div class="row">
+                    <div class="nav-1 d-flex g-5">
+                        <ul class="d-flex">
+                            <li><a href="{% url 'main' %}">Ana səhifə</a></li>
+                            <li><a href="{% url 'main' %}">Bütün elanlar</a></li>
+                            <li><a href="">Moto</a></li>
+                            <li><a href="">Ehtiyat hissələri və aksesuarlar</a></li>
+                            <li><a href="">İcarə</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-2">
+                        <div class="btn">
+                            <a href="{% url 'create_car' %}">
+                                <span><i class="fa-solid fa-circle-plus"></i></span>Yeni elan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="grey-zone container1">
+        <h3>ELAN YERLƏŞDİRMƏK</h3>
+    </section>
+
+<section>
+        <div class="container">
+            <div class="row">
+                <div class="new-product">
+                    <div class="form-header">
+                        <ul>
+                            <li>• Üç ay ərzində bir nəqliyyat vasitəsi yalnız bir dəfə pulsuz dərc oluna bilər.</li>
+                            <li>• Üç ay ərzində təkrar və ya oxşar elanlar (marka/model, rəng) ödənişlidir.</li>
+                            <li>• Elanınızı saytın ön sıralarında görmək üçün "İrəli çək" xidmətindən istifadə edin.</li>
+                                                 </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2>Create New Car</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          
+
+            {{ form.as_p}}
+
+           
+        
+            <button type="submit">Yarat</button>
+        </form>
+    </div>
+
+</body>
+</html>

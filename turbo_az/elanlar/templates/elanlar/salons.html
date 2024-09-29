@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rəsmi Nümayəndələr</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'elanlar/salons.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/vusale.png' %}" />
+
+</head>
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .header-container-1, 
+        .header-container-2 {
+            width: 100%;
+            display:ruby 
+        }
+
+        .header-container-1 {
+            display: flex; /* Use flexbox to align items horizontally */
+            justify-content: flex-start;
+            align-items: center; /* Align items vertically in the center */
+            background-color: rgb(239, 237, 237);
+            padding: 20px 70px;
+            box-sizing: border-box;
+        }
+
+        .header-container-1 h1,
+        .header-container-1 h2 {
+            margin: 0 20px; /* Add some space between the titles */
+        }
+
+        .header-container-1 h1 {
+            background-color: rgb(239, 237, 237);
+            padding: 0px;
+            color: white;
+            border-radius: 10px;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items:baseline;
+        }
+
+        .header-container-1 h2 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .header-container-1 a {
+            color: rgb(134, 132, 132);
+            text-decoration: none;
+            padding: 0px 30px;
+            font-size: 1.2rem;
+        }
+
+        .header-container-1 a:hover {
+            background-color: aliceblue;
+            border-radius: 5px;
+            color: rgb(202, 42, 42);
+        }
+
+        .header-container-2 {
+            display:ruby;
+            justify-content: center;
+            background-color: rgb(216, 15, 15);
+            width: 100%;         
+            height: 30px;     
+            padding: 15px 200px; 
+        }
+
+        .header-container-2 a {
+            color: white;
+            text-decoration: none;
+            padding: 3px 10px;   /* Adjust padding for links */
+            font-size: 1rem;   /* Smaller font size */
+        }
+
+        .header-container-2 a:hover {
+            background-color: rgba(231, 223, 223, 0.2);
+            border-radius: 5px;
+        }
+
+
+        @media (max-width: 800px) {
+       .header-container-2 a {
+            font-size: 0.7rem;
+            }
+        }
+
+        .dropdown {
+            position:relative;
+            display:inline-block;
+            padding: 3px 10px;
+        }
+        .dropdown-content {
+            display: none;
+            position:absolute;
+            background-color: rgb(246, 241, 241);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0, 2);
+            min-width: 200px;
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 1rem;
+        }
+        .dropdown-content a:hover {
+            background-color: #f3efef;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown:hover > a {
+            background-color: rgba(98, 83, 83, 0.2);
+            color: white;
+        }
+
+
+        .header-container-2 h1 {
+            background-color: rgb(98, 231, 98);
+            padding: 0px 0px;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            position: relative;
+            display:inline-flex;
+            align-items:baseline;
+        }
+        .header-container-1 h1, 
+        .header-container-2 h1 {
+            font-size: 0rem; 
+        }
+</style>
+    <header class="header-container-1">
+        
+        <a href="https://tap.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo#_gl=1*1g2zdi7*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MjA2NDIuNjAuMC4w">Tap.az</a>
+        <a href="https://bina.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo#_gl=1*w896aj*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MjA2NDIuNjAuMC4w">Bina.az</a>
+        <a href="https://boss.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo#_gl=1*w896aj*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MjA2NDIuNjAuMC4w">Boss.az</a>
+        <a href="{% url 'main' %}">Destek:(012)055-77-55</a>
+        <a href="{% url 'help' %}">Yardim</a>
+        <a href="https://ru.turbo.az/help/popular_questions#_gl=1*1amcyuy*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUyNjA4OC4zOC4xLjE3MjQ1MjYxMzQuMTQuMC4w">RU</a>
+        <nav>
+            <a href="{% url 'like_page' %}"><i class="fas fa-heart"></i> Seçilmişlər</a>
+                {% if user.is_authenticated %}
+                
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit"><i class="fas fa-sign-out-alt"></i> Çıxış</button>
+                    </form>
+                
+                <a href="{% url 'user_profile' %}">Profile</a>
+                {% else %}
+            <a href="{% url 'login_register' %}"><i class="fas fa-user"></i> Giriş</a>
+                {% endif %}
+
+        </nav>
+        
+    </header>
+
+    <header class="header-container-2">
+        <a href="{% url 'main' %}">TURBO.AZ</a>
+        <a href="{% url 'main' %}">Bütün elanlar</a>
+        <a href="{% url 'salons' %}">Salonlar</a>
+        <a href="https://turbo.az/autocatalog">Avtokataloq</a>
+        <a href="https://turbo.az/motosiklet">Moto</a>
+
+<div class="dropdown">
+    <a href="javascript:void(0);">Ehtiyat hisseleri ve aksesuarlar</a>
+    <div class="dropdown-content">
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4045&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*2tursx*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Aksesuarlar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4046&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*2tursx*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Audio ve video texnika</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4044&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*uj2mxn*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Avtokosmetika ve avtokimya</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4047&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*8kzkpa*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Ehtiyat hisseleri</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4043&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*8kzkpa*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">GPS naviqatorlar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/qeydiyyat-nisanlari?p%5B798%5D=4119&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*8kzkpa*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Qeydiyyat nisanlari</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4048&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*y2y6vo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Siqnalizasiyalar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=7476&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*y2y6vo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Videoqeydiyyatcilar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4050&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*y2y6vo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Sinler,diskler ve tekerler</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4051&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*1uind68*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Diger</a>
+    </div>
+</div>
+    <div class="dropdown">
+    <a href="javascript:void(0);">Icare</a>
+    <div class="dropdown-content">
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40752&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_cars#_gl=1*vunqvt*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDc4NjE0MC41MC4wLjE3MjQ3ODYxNDEuNTkuMC4w">Avtomobiller</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40753&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_buses#_gl=1*1u08j5y*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Avtobus ve mikroavtobuslar</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40755&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_bikes#_gl=1*i7xpwo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Motosiklet ve mopedler</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40754&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_commerce_transport#_gl=1*i7xpwo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Xususi texnika</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40756&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_other#_gl=1*af82pe*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Diger</a>
+    </div>
+</div>
+        <h1><a href="{% url 'create_car' %}" style="color: white;">+ Yeni elan</a></h1>
+    </header>
+    <div class="container">
+        <h1 class="text-center my-4">Rəsmi Nümayəndələr</h1>
+        <div class="row">
+            {% for salon in salons %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-logo text-center py-3">
+                        {% if elanlar.logos %}
+                            <img src="{{ elanlar.movie.logos.url }}" alt="{{ salon.name }}" class="img-fluid">
+                        {% else %}
+                            <p>Şəkil mövcud deyil.</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">{{ salon.name }}</h2>
+                        <p class="card-text">{{ salon.description }}</p>
+                        <p class="card-text contact-info">📞 {{ salon.phone }}</p>
+                        <p class="card-text ads-count">{{ salon.ads_count }} elan</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Gfke+ok+l5JYSuu2kg/15KfQ2hTO" crossorigin="anonymous"></script>
+</body>
+</html>

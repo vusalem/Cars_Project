@@ -1,0 +1,112 @@
+...{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Detail</title>
+    <link rel="stylesheet" href="{% static 'user/car_page.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ car.brand }} {{ car.model }}, {{ car.year }} il</h1>
+            <div class="actions">
+                <a href="{% url 'main' %}" class="edit-button"><button>Geri</button></a>
+                <button class="report-btn"><i class="fa fa-flag"></i> Şikayət et</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="car-images">
+                <img src="{{ car.front_view_image.url }}" alt="Ön görünüş" class="main-image">
+                <div class="thumbnails">
+                    <img src="{{ car.front_view_image.url }}" alt="Ön görünüş" class="thumbnail">
+                    <img src="{{ car.rear_view_image.url }}" alt="Arxa görünüş" class="thumbnail">
+                    <img src="{{ car.interior_view_image.url }}" alt="Daxili görünüş" class="thumbnail">
+                </div>
+            </div>
+            <div class="car-details">
+                <div class="price">
+                    <span>{{ car.price }}</span>
+                    <span>AZN</span>
+                </div>
+                <div class="contact-info">
+                    Telefon nömrəsi:
+                    <p>{{ car.phone_number }}</p>
+                </div>
+                <div class="description">
+                    <p>Qİymətlərə ƏDV daxildir</p>
+                    <p>{{ car.additional_info }}</p>
+                </div>
+                <div class="additional-info">
+                    <p>Yeniləndi: {{ car.created_at }}</p>
+                    <p>Baxış sayı: {{ car.view_count }}</p>
+                </div>
+                <table class="specifications">
+                    <tr>
+                        <td>Şəhər</td>
+                        <td>{{ car.city }}</td>
+                        <td>Sürətlər qutusu</td>
+                        <td>{{ car.transmitter }}</td>
+                    </tr>
+                    <tr>
+                        <td>Marka</td>
+                        <td>{{ car.brand }}</td>
+                        <td>Ötürücü</td>
+                        <td>{{ car.bantype }}</td>
+                    </tr>
+                    <tr>
+                        <td>Model</td>
+                        <td>{{ car.model }}</td>
+                        <td>Status</td>
+                        <td>{{ car.status }}</td>
+                    </tr>
+                    <tr>
+                        <td>Buraxılış ili</td>
+                        <td>{{ car.year }}</td>
+                        <td>Yerlərin sayı</td>
+                        <td>{{ car.seat_count }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ban növü</td>
+                        <td>{{ car.bantype }}</td>
+                        <td>Sahibler</td>
+                        <td>{{ car.owner_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Rəng</td>
+                        <td>{{ car.color }}</td>
+                        <td>Vəziyyəti</td>
+                        <td>{{ car.status }}, {{ car.damage_have }}</td>
+                    </tr>
+                    <tr>
+                        <td>Mühərrik</td>
+                        <td>{{ car.engine_capacity }} L / {{ car.engine_power }} a.g. / {{ car.fueltype }}</td>
+                        <td>Hansı bazar üçün</td>
+                        <td>{{ car.carmarch }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sahibi</td>
+
+<td>{{ car.user }}</td>
+                    </tr>
+                    <tr>
+                        <td>Yürüş</td>
+                        <td>{{ car.mileage }} {{ car.mileage_unit }}</td>
+                    </tr>
+                </table>
+                <div class="seller-info">
+                    <p>Salon: 040 Cars</p>
+                    <p>Adres: Bakı ş., Nizami r., Babək pr., 2270/77</p>
+                    <a href="{% url 'salons' %}"><button class="visit-salon-btn">Salona keç</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="favourites.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profili Redaktə Et</title>
+    <link rel="stylesheet" href="{% static 'elanlar/edit_profile.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Profili Redaktə Et</h1>
+        <h1>{{ user.username }}</h1>
+        <form method="post" class="edit-profile-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Dəyişiklikləri Yadda Saxla</button>
+        </form>
+    </div>
+</body>
+</html>

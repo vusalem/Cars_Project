@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Enhanced shadow */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee; /* Bottom border for separation */
+    padding-bottom: 10px; /* Spacing below header */
+}
+
+.header h1 {
+    font-size: 28px; /* Increased font size */
+    margin: 0;
+    color: #333; /* Darker text color */
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.actions button,
+.edit-button {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd; /* Border for buttons */
+    padding: 10px 15px; /* Adjusted padding */
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px; /* Rounded button edges */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.actions button:hover,
+.edit-button:hover {
+    background-color: #ddd; /* Hover effect */
+}
+
+.main-content {
+    display: flex;
+    margin-top: 20px;
+}
+
+.car-images {
+    flex: 1;
+}
+
+.car-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+.thumbnails {
+    display: flex;
+    margin-top: 10px;
+}
+
+.thumbnails img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border: 1px solid #ddd; /* Thumbnail border */
+    border-radius: 5px; /* Rounded corners for thumbnails */
+    cursor: pointer;
+    transition: transform 0.3s; /* Smooth scaling effect */
+}
+
+.thumbnails img:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+.car-details {
+    flex: 2;
+    margin-left: 20px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #4CAF50; /* Green color for price */
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+.show-number-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded button edges */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.show-number-btn:hover {
+    background-color: #45a049;
+}
+
+.description, .additional-info, .seller-info {
+    margin-bottom: 20px;
+}
+
+.specifications {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specifications td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.seller-info {
+    margin-top: 20px; /* Spacing before seller info */
+}
+
+.seller-info button {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded button edges */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.seller-info button:hover {
+    background-color: #007bb5;
+}

@@ -1,0 +1,175 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .head-info {
+    background-color: #dbcaca;
+    color: #fff;
+    padding: 10px 0;
+  }
+  
+  .head-info ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .head-info ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .head-info ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  .head-info ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  .head-info ul li span {
+    font-weight: bold;
+  }
+  
+  .web-navbar {
+    background-color:#b3a8a8;
+    padding: 10px 0;
+  }
+  
+  .web-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .web-navbar ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .web-navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  .web-navbar ul li a:hover {
+    background-color: #444;
+    border-radius: 5px;
+  }
+  
+  .grey-zone {
+    background-color: #ccc;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .card {
+    max-width: 9.375rem; 
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    position: relative;
+  }
+
+.card-wrapper{
+  display: grid;
+ grid-template-columns: auto auto auto;
+ width: 80%;
+ margin: 20px auto;
+justify-content: center; 
+grid-gap: 30px;
+}
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-body {
+    padding: 10px; 
+  }
+  
+  .card-body h5 {
+    margin: 0 0 5px; 
+    font-size: 14px; 
+    font-weight: bold;
+  }
+  
+  .card-body p {
+    margin: 3px 0; 
+    font-size: 12px; 
+  }
+  
+  .card-footer {
+    background-color: #f7f7f7;
+    padding: 5px; 
+    text-align: center;
+    font-size: 12px; 
+  }
+  
+  .card-footer .price {
+    font-size: 16px; 
+    font-weight: bold;
+    color: #d32f2f;
+  }
+  
+  .card-footer .details {
+    font-size: 10px; 
+    color: #777;
+  }
+  
+  
+  .card .badge {
+    position: absolute;
+    top: 5px; 
+    left: 5px; 
+    background-color: #007bff;
+    color: #fff;
+    padding: 3px 5px; 
+    border-radius: 5px;
+    font-size: 10px; 
+  }
+  
+  .card .icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 10px;
+    background: none;
+    border-radius: 11px 0;
+    cursor: pointer;
+    background: radial-gradient(black, transparent);
+}
+  
+  .card .icon .fa-heart {
+    color: white; 
+  }
+  
+  .card .icon.active .fa-heart {
+    color: red; 
+  }
+  
+  .card .crown {
+    position: absolute;
+    bottom: 5px; 
+    right: 5px; 
+    font-size: 14px; 
+    color: orange;
+  }

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ user.username }} Profil</title>
+    <link rel="stylesheet" href="{% static 'elanlar/user_profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <!-- Header içeriği buraya gelecek -->
+    </header>
+    <main class="profile-container">
+        <h1>{{ user.username }} Profil</h1>
+        <div class="profile-actions">
+            <a href="{% url 'edit_profile' %}" class="button">Profilimi Redaktə Et</a>
+            <a href="{% url 'delete_profile' %}" class="button">Profilimi Sil</a>
+        </div>
+
+        <h2>Təsdiq edilmiş elanlar</h2>
+        <div class="car-list">
+            {% for car in approved_cars %}
+            <div class="card {% if car.is_vip %}vip{% endif %}" id="{{ car.id }}">
+                {% if car.is_vip %}
+                <span class="details"><i class="fas fa-crown"></i></span>
+                {% endif %}
+                <a href="{% url 'car_page' car.id %}">
+                    <img class="car-img" src="{{ car.front_view_image.url }}" alt="Car Image">
+                    <div class="badge">{{ car.brand }}</div>
+                    <div class="card-body">
+                        <h5 class="car-model">{{ car.car_models }}</h5>
+                        <p class="car-info">{{ car.year }}, {{ car.engine_capasity }} L, {{ car.mileage }} km</p>
+                        <p class="car-location">{{ car.city }}, bugün 13:29</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">{{ car.price }} {{ car.price_currency }}</span>
+                        <a href="{% url 'edit_car' car.id %}" class="edit-button">Redaktə Et</a>
+                        <a href="{% url 'delete_car' car.id %}" class="delete-button">Sil</a>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p>Təsdiq edilmiş elan tapılmadı!</p>
+            {% endfor %}
+        </div>
+
+        <h2>Təsdiq edilməyi gözləyən elanlar</h2>
+        <div class="car-list">
+            {% for car in pending_cars %}
+            <div class="card {% if car.is_vip %}vip{% endif %}" id="{{ car.id }}">
+                {% if car.is_vip %}
+                <span class="details"><i class="fas fa-crown"></i></span>
+                {% endif %}
+                <a href="{% url 'car_page' car.id %}">
+                    <img class="car-img" src="{{ car.front_view_image.url }}" alt="Car Image">
+                    <div class="badge">{{ car.brand }}</div>
+                    <div class="card-body">
+                        <h5 class="car-model">{{ car.car_models }}</h5>
+                        <p class="car-info">{{ car.year }}, {{ car.engine_capasity }} L, {{ car.mileage }} km</p>
+                        <p class="car-location">{{ car.city }}, bugün 13:29</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">{{ car.price }} {{ car.price_currency }}</span>
+                        <a href="{% url 'edit_car' car.id %}" class="edit-button">Redaktə Et</a>
+                        <a href="{% url 'delete_car' car.id %}" class="delete-button">Sil</a>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p>Təsdiq edilməyi gözləyən elan tapılmadı!</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

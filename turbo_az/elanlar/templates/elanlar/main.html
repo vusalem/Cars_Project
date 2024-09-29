@@ -1,0 +1,552 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="az">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Turbo.Az:avtomobil almaq, satmaq, teze ve islenmis avtomobillerin ...</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{% static 'icons/vusale.png' %}" />
+
+    </head>
+        <style>
+            body {
+                margin: 0;
+                padding: 0px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .header-container-1, 
+            .header-container-2 {
+                width: 100%;
+                display:ruby 
+            }
+
+            .header-container-1 {
+                display: flex; /* Use flexbox to align items horizontally */
+                justify-content: flex-start;
+                align-items: center; /* Align items vertically in the center */
+                background-color: rgb(239, 237, 237);
+                padding: 20px 70px;
+                box-sizing: border-box;
+            }
+
+            .header-container-1 h1,
+            .header-container-1 h2 {
+                margin: 0 20px; /* Add some space between the titles */
+            }
+
+            .header-container-1 h1 {
+                background-color: rgb(239, 237, 237);
+                padding: 0px;
+                color: white;
+                border-radius: 10px;
+                font-size: 1rem;
+                display: inline-flex;
+                align-items:baseline;
+            }
+
+            .header-container-1 h2 {
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            .header-container-1 a {
+                color: rgb(134, 132, 132);
+                text-decoration: none;
+                padding: 0px 30px;
+                font-size: 1.2rem;
+            }
+
+            .header-container-1 a:hover {
+                background-color: aliceblue;
+                border-radius: 5px;
+                color: rgb(202, 42, 42);
+            }
+
+            .header-container-2 {
+                display:ruby;
+                justify-content: center;
+                background-color: rgb(216, 15, 15);
+                width: 100%;         
+                height: 30px;     
+                padding: 15px 200px; 
+            }
+
+            .header-container-2 a {
+                color: white;
+                text-decoration: none;
+                padding: 3px 10px;   /* Adjust padding for links */
+                font-size: 1rem;   /* Smaller font size */
+            }
+
+            .header-container-2 a:hover {
+                background-color: rgba(231, 223, 223, 0.2);
+                border-radius: 5px;
+            }
+
+
+            @media (max-width: 800px) {
+           .header-container-2 a {
+                font-size: 0.7rem;
+                }
+            }
+
+            .dropdown {
+                position:relative;
+                display:inline-block;
+                padding: 3px 10px;
+            }
+            .dropdown-content {
+                display: none;
+                position:absolute;
+                background-color: rgb(246, 241, 241);
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0, 2);
+                min-width: 200px;
+                z-index: 1;
+            }
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                font-size: 1rem;
+            }
+            .dropdown-content a:hover {
+                background-color: #f3efef;
+            }
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            .dropdown:hover > a {
+                background-color: rgba(98, 83, 83, 0.2);
+                color: white;
+            }
+
+
+            .header-container-2 h1 {
+                background-color: rgb(98, 231, 98);
+                padding: 0px 0px;
+                color: white;
+                border-radius: 5px;
+                font-size: 1rem;
+                position: relative;
+                display:inline-flex;
+                align-items:baseline;
+            }
+            .header-container-1 h1, 
+            .header-container-2 h1 {
+                font-size: 0rem; 
+            }
+
+            .filter-form {
+                display: flex;
+                padding: 15px 90px;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content:last baseline;
+                background-color: rgb(224, 229, 229);
+                font-size:medium;
+                position: relative; /* Change to relative */
+                top: -5px; /* Move it 20px upwards */
+            }
+
+
+            .filter-form select,
+            .filter-form input {
+                padding: 10px;
+                font-size: 14px;
+                background-color: white;
+                border: 2px solid;          
+                border-color: #e6e5e4;    
+                border-radius: 5px;
+            }
+
+            
+            .filter-row label {
+                margin-right: 10px;
+                display: flex;
+            }
+
+            .filter-row input {
+                margin-left: 10px;
+                padding: 5px;
+            }
+
+
+            .filter-form button {
+                padding: 6px 12px;
+                font-size: 20px;
+                background-color: rgb(209, 32, 32);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+
+
+            /* General styling for the car list container */
+            .car-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: space-between;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+
+/* Card styling */
+            .card {
+                width: 300px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+                position: relative;
+            }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+/* VIP Badge for special cars */
+            .card.vip {
+                border: 2px solid gold;
+            }
+
+            .card .badge {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 5px 10px;
+                font-size: 0.9rem;
+                border-radius: 5px;
+            }
+
+/* Icon button styling */
+            .icon {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: red;
+            }
+
+            .icon i {
+                color: red;
+            }
+
+            .icon:hover i {
+                color: darkred;
+            }
+
+/* Image styling */
+            .car-img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-bottom: 2px solid #e0e0e0;
+            }
+
+/* Card body (details) */
+            .card-body {
+                padding: 15px;
+            }
+
+            .card-body h5 {
+                font-size: 1.2rem;
+                margin: 0;
+                color: #333;
+            }
+
+            .card-body p {
+                margin: 5px 0;
+                color: #777;
+                font-size: 0.9rem;
+            }
+
+/* Car location and date */
+            .car-location {
+                font-size: 0.8rem;
+                color: #999;
+            }
+
+/* Card footer with price and VIP tag */
+            .card-footer {
+                padding: 15px;
+                background-color: #f4eded;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-top: 2px solid #e0e0e0;
+            }
+
+            .card-footer .price {
+                font-size: 1.2rem;
+                color: #333;
+                font-weight: bold;
+            }
+
+            .card-footer .details {
+                background-color: gold;
+                padding: 5px 10px;
+                font-size: 0.9rem;
+                border-radius: 5px;
+                color: white;
+            }
+
+/* Responsive design */
+                @media (max-width: 768px) {
+            .car-list {
+                flex-direction: column;
+                align-items: center;
+                }
+
+            .card {
+                width: 100%;
+                max-width: 400px;
+                }
+            }
+            html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    flex-grow: 1;
+}
+
+/* Page content should grow to push footer down */
+.page-content {
+    flex-grow: 1;
+}
+
+.site-footer {
+    background-color: #dd1e1e;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #fdfafa;
+    font-family: Arial, sans-serif;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Ensures the footer is pushed to the bottom */
+}
+
+.mobil-link {
+    color: #f7f8f9;
+    text-decoration: none;
+}
+
+.mobil-link:hover {
+    text-decoration: underline;
+}
+
+
+
+
+        </style>
+
+
+<body>
+    <header class="header-container-1">
+        
+        <a href="https://tap.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo#_gl=1*1g2zdi7*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MjA2NDIuNjAuMC4w">Tap.az</a>
+        <a href="https://bina.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo#_gl=1*w896aj*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MjA2NDIuNjAuMC4w">Bina.az</a>
+        <a href="https://boss.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo#_gl=1*w896aj*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MjA2NDIuNjAuMC4w">Boss.az</a>
+        <a href="{% url 'main' %}">Destek:(012)055-77-55</a>
+        <a href="{% url 'help' %}">Yardim</a>
+        <a href="https://ru.turbo.az/help/popular_questions#_gl=1*1amcyuy*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUyNjA4OC4zOC4xLjE3MjQ1MjYxMzQuMTQuMC4w">RU</a>
+        <nav>
+            <a href="{% url 'like_page' %}"><i class="fas fa-heart"></i> Seçilmişlər</a>
+                {% if user.is_authenticated %}
+                
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit"><i class="fas fa-sign-out-alt"></i> Çıxış</button>
+                    </form>
+                
+                <a href="{% url 'user_profile' %}">Profile</a>
+                {% else %}
+            <a href="{% url 'login_register' %}"><i class="fas fa-user"></i> Giriş</a>
+                {% endif %}
+
+        </nav>
+        
+    </header>
+
+    <header class="header-container-2">
+        <a href="{% url 'main' %}">TURBO.AZ</a>
+        <a href="{% url 'main' %}">Bütün elanlar</a>
+        <a href="{% url 'salons' %}">Salonlar</a>
+        <a href="https://turbo.az/autocatalog">Avtokataloq</a>
+        <a href="https://turbo.az/motosiklet">Moto</a>
+
+<div class="dropdown">
+    <a href="javascript:void(0);">Ehtiyat hisseleri ve aksesuarlar</a>
+    <div class="dropdown-content">
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4045&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*2tursx*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Aksesuarlar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4046&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*2tursx*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Audio ve video texnika</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4044&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*uj2mxn*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Avtokosmetika ve avtokimya</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4047&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*8kzkpa*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Ehtiyat hisseleri</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4043&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*8kzkpa*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">GPS naviqatorlar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/qeydiyyat-nisanlari?p%5B798%5D=4119&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*8kzkpa*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Qeydiyyat nisanlari</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4048&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*y2y6vo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Siqnalizasiyalar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=7476&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*y2y6vo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Videoqeydiyyatcilar</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4050&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*y2y6vo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Sinler,diskler ve tekerler</a>
+        <a href="https://tap.az/elanlar/neqliyyat/ehtiyyat-hisseleri-ve-aksesuarlar?p%5B798%5D=4051&utm_source=turboaz&utm_medium=link&utm_content=accessories&utm_campaign=desktop#_gl=1*1uind68*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Diger</a>
+    </div>
+</div>
+    <div class="dropdown">
+    <a href="javascript:void(0);">Icare</a>
+    <div class="dropdown-content">
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40752&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_cars#_gl=1*vunqvt*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDc4NjE0MC41MC4wLjE3MjQ3ODYxNDEuNTkuMC4w">Avtomobiller</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40753&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_buses#_gl=1*1u08j5y*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Avtobus ve mikroavtobuslar</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40755&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_bikes#_gl=1*i7xpwo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Motosiklet ve mopedler</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40754&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_commerce_transport#_gl=1*i7xpwo*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Xususi texnika</a>
+        <a href="https://tap.az/elanlar/xidmetler/neqliyyat-icaresi?p%5B1008%5D=40756&utm_source=turboaz&utm_medium=desktop&utm_campaign=rentacar&utm_id=header_other#_gl=1*af82pe*_ga*MTgzNzQ2OTUzNy4xNzE5Nzc0NTM1*_ga_68B6PJZXYD*MTcyNDUxODIyMi4zNy4xLjE3MjQ1MTkxODIuNjAuMC4w">Diger</a>
+    </div>
+</div>
+        <h1><a href="{% url 'create_car' %}" style="color: white;">+ Yeni elan</a></h1>
+    </header>
+
+    <br>
+
+
+</body>
+    
+    <br>
+
+    <!-- Filtrasiya bölməsi -->
+    <div class="filter-section">
+        <div class="container">
+            <!-- Filtr Formu -->
+            <form method="get" action="{% url 'main' %}" class="filter-form">
+
+        
+                <div class="filter-group">
+                    <label for="id_brand">Marka</label> {{ form.brand }}
+                    <label for="id_model">Model</label> {{ form.model }}   
+                </div>
+
+
+                <div class="filter-group">
+                    <label for="id_city">Şeher</label> {{ form.city }}
+                </div>
+                
+
+            <div class="filter-group">
+                <label for="price_min">Qiymət, min.</label> {{ form.min_price }}
+                <label for="price_max">maks.</label> {{ form.max_price }}        
+            </div>
+
+
+            <div class="filter-row">
+                <label for="currency">Valyuta</label> {{ form.currency }}
+            </div>
+
+
+            <div class="filter-row">
+                <label for="id_color">Reng</label> {{ form.color }}
+            </div>
+
+
+            <div class="filter-group">
+                <label for="id_fueltype">Yanacaq növü</label> {{ form.fueltype }}    
+            </div>
+
+
+            <div class="filter-group">
+                <label for="id_bantype">Ban növü</label> {{ form.bantype }}
+            </div>
+
+
+            <div class="filter-group">
+                <label for="id_carmarch">Yürüş (km)</label> {{ form.carmarch }}
+            </div>
+            
+
+            <div class="filter-group">
+                <label for="id_gearbox">Süretler qutusu</label> {{ form.gearbox }}
+            </div>
+
+            <div class="filter-row">
+                <label for="min_year">İl, min.</label>
+                <input type="number" id="min_year" name="min_year" placeholder="Min">
+                <label for="max_year">maks.</label>
+                <input type="number" id="max_year" name="max_year" placeholder="Maks">
+            </div>
+
+
+            <div class="filter-group"> 
+                <label for="id_transmitter">Ötürücü</label> {{ form.transmitter }}
+            </div>
+    
+
+            <div class="filter-actions">
+                <button type="submit" class="filter-button">Elanları göstər</button>
+                <a href="#" class="reset-button">Sıfırla</a>
+            </div>
+
+
+        </form>
+    </div>
+    <script>
+        document.querySelector('.reset-button').addEventListener('click', function() {
+            window.location.href = window.location.pathname;
+        });
+    </script>
+    <script src="{% static 'elanlar/main.js' %}"></script>
+
+    <div class="car-list">
+            <div class="content-car">
+                {% for car in cars %}
+                <div class="card {% if car.is_vip %}vip{% endif %}" id="{{ car.id }}">
+                    <button class="icon" id="heart-icon" data-car-id="{{ car.id }}">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <a href="{% url 'car_page' car.id %}">
+                        <img class="car-img" src="{{ car.front_view_image.url }}" alt="Car Image">
+                        <div class="badge">{{ car.brand }}</div>
+                        <div class="card-body">
+                            <h5 class="car-model">{{ car.car_models }}</h5>
+                            <p class="car-info">{{ car.year }}, {{ car.engine_capasity }} L, {{ car.mileage }} {{ car.mileage_unit }}</p>
+                            <p class="car-location">{{ car.city }}, {{ car.created_at }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="price">{{ car.price }} {{ car.price_currency }}</span>
+                            {% if car.is_vip %}
+                            <span class="details">VIP</span>
+                            {% endif %}
+
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>Saytın Administrasiyası reklam bannerlərinin və yerləşdirilmiş elanların məzmununa görə məsuliyyət daşımır.</p>
+                <p>2006-2024 Digital Classifieds MMC. VÖEN: 1405631661</p>
+                <a href="#" class="mobil-link">Mobil versiyası</a>
+            </div>
+        </footer>
+        
+        
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Car</title>
+    <link rel="stylesheet" href="{% static 'elanlar/create_car.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Header'ı buraya ekleyin -->
+    </header>
+
+    <div class="container">
+        <h2>Edit Car</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-button">Save Changes</button>
+        </form>
+    </div>
+
+</body>
+</html>

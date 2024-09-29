@@ -1,0 +1,136 @@
+/* Genel Ayarlar */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.top-header {
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-nav a, .support a {
+    color: #555;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.top-nav a:hover, .support a:hover {
+    text-decoration: underline;
+}
+
+.support {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.support p {
+    margin: 0;
+}
+
+.main-header {
+    background-color: #d32f2f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* Genel Ayarlar */
+.new-ad-button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Konteyner */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Başlık */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Kart Stil Ayarları */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    margin-bottom: 20px;
+    padding: 20px;
+    align-items: center;
+    border: 1px solid #ddd; /* Border Eklendi */
+}
+
+/* Kart Logo Alanı */
+.card-logo {
+    flex-shrink: 0; /* Logo alanının küçülmesini önler */
+    margin-right: 20px;
+}
+
+.card-logo img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Kart İçerik Alanı */
+.card-content {
+    flex: 1;
+}
+
+/* Kart Başlığı */
+.card-content h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Kart Metni */
+.card-content p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* İletişim Bilgileri */
+.contact-info {
+    color: #007BFF;
+}
+
+/* İlan Sayısı */
+.ads-count {
+    color: #888;
+}

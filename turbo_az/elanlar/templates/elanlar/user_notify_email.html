@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>Elanınız Uğurla Yaradıldı</title>
+</head>
+<body>
+    <p>Salam {{ car.user.username }},</p>
+    <p>Elanınız uğurla yaradıldı. Elan detallarını aşağıda tapa bilərsiniz:</p>
+    <ul>
+        <li>Marka: {{ car.brand }}</li>
+        <li>Model: {{ car.models_car }}</li>
+        <li>İl: {{ car.year }}</li>
+        <!-- Digər elan detallarını buraya əlavə edə bilərsiniz -->
+    </ul>
+    <p>Elanınız admin tərəfindən təsdiqləndikdən sonra yayımlanacaqdır.</p>
+    <p>Təşəkkürlər,</p>
+    <p>Turbo.az Komandası</p>
+</body>
+</html>

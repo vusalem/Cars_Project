@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbo.az Giriş Sayfası</title>
+    <link rel="stylesheet" href="{% static 'elanlar/login_user.css' %}">
+</head>
+<body>
+    <div class="qutu">
+        <div class="btn"><a href="{% url 'main' %}" class="new-ad-button">&times;</a></div>
+        <div class="center">
+            <div class="container">
+                <h1>Giriş</h1>
+                <form method="POST" action="{% url 'login_user' %}">
+                    {% csrf_token %}
+                    <label for="username">İstifadəçi adı:</label>
+                    <input type="text" id="username" name="username" required><br>
+
+                    <label for="password">Şifrə:</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <button type="submit">Giriş</button>
+                </form>
+                
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <a href="{% url 'login_register' %}">Şifrəni unutdunuzmu?</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstifadəçi Qeydiyyatı</title>
+    <link rel="stylesheet" href="{% static 'elanlar/register_user.css' %}">
+</head>
+<body>
+    <div class="btn">
+        <a href="{% url 'main' %}" class="new-ad-button">&times;</a>
+    </div>
+    <div class="register-container">
+        <h2>İstifadəçi Qeydiyyatı</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Profil adı:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="first_name">Ad:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Soyad:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon Nömrəsi:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Cinsi:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Kişi</option>
+                    <option value="female">Qadın</option>
+                    <option value="other">Digər</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="birth_date">Doğum Tarixi:</label>
+                <input type="date" id="birth_date" name="birth_date" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Şifrə:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Şifrəni Təkrarla:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <button type="submit">Qeydiyyatdan Keç</button>
+        </form>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <p>Bir hesabınız var? <a href="{% url 'login' %}">Giriş Edin</a></p>
+    </div>
+</body>
+</html>
+
