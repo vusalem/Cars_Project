@@ -1,0 +1,23 @@
+FROM python:3.12
+
+ENV PYTHONUNBUFFERED 1
+
+RUN \
+   apt-get -y update  && apt-get -y upgrade && apt-get -y dist-upgrade 
+
+RUN apt-get update
+
+WORKDIR /code/turbo_az
+
+COPY requirements.txt /code/turbo_az/
+
+RUN \
+    pip install --upgrade pip setuptools wheel \
+    && pip install --upgrade pip \
+    && pip install --upgrade pip setuptools wheel \
+    && pip install -r requirements.txt
+
+COPY . ./turbo_az
+
+
+CMD ["celery", "-A", "turbo_az.celery", "worker", "--loglevel=INFO"]

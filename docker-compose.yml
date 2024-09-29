@@ -1,0 +1,46 @@
+services:
+  web:
+    build:
+      context: .
+    container_name: web
+    restart: always
+    ports:
+      - "8000:80"  # Dışarıdan 8080 portu ile erişim
+    depends_on:
+      - redis
+      - celery_worker
+    networks:
+      - app-network
+    environment:
+      - DJANGO_SETTINGS_MODULE=turbo_az.settings  # Django ayarlarını belirtin
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"  # Redis portunu dışarıya açar
+    networks:
+      - app-network
+    environment:
+      - REDIS_PASSWORD=your_redis_password  # Redis şifresi ekleyin, eğer kullanıyorsanız
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.celery
+    container_name: celery_worker
+    restart: always
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0  # Sonuç backend ayarı ekleyin
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
